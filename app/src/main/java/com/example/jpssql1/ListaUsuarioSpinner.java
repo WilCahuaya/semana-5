@@ -43,17 +43,27 @@ public class ListaUsuarioSpinner extends AppCompatActivity {
         //GENERAR listado de usuario
         generarListarUsuario();
         //ojo formato cadea item
-        ArrayAdapter adapter=new ArrayAdapter(this, android.R.layout.simple_spinner_item,listaInformacio);
+
+        ArrayAdapter<CharSequence> adapter=new ArrayAdapter(this, android.R.layout.simple_spinner_item,listaInformacio);
         spiUsuario.setAdapter(adapter);
+        spiUsuario.getSelectedItemPosition();
         spiUsuario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
-                txtId.setText(listaUsuarios.get(posicion).toString());
-                txtNombre.setText(listaUsuarios.get(posicion).toString());
-                txtTelefono.setText(listaUsuarios.get(posicion).toString());
-                //por completar
+                txtId.setText(String.valueOf(posicion).toString());
+            }
+            @Override
+            public Void onNothingSelected(AdapterView<?> adapterView){
+
             }
         });
+//        spiUsuario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
+//                txtId.setText(String.valueOf(posicion));
+//                //por completar
+//            }
+//        });
     }
     private void generarListarUsuario() {
         SQLiteDatabase db=conexion.getReadableDatabase();
@@ -83,3 +93,6 @@ public class ListaUsuarioSpinner extends AppCompatActivity {
         }
     }
 }
+
+//NavDriver
+//Clase Toast personalisado
